@@ -2,8 +2,8 @@
 <resources>
 
     <style name="Theme.HacatonAndroid" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">#FF29B8CC</item>
-        <item name="android:navigationBarColor">#FF29B8CC</item>
-        <item name="android:statusBarColor">#FF29B8CC</item>
+        <item name="android:windowBackground">#FF6CB657</item>
+        <item name="android:navigationBarColor">#FF6CB657</item>
+        <item name="android:statusBarColor">#FF6CB657</item>
     </style>
 </resources>

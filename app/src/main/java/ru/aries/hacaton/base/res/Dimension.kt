@@ -8,27 +8,16 @@ import androidx.compose.ui.unit.sp
 
 object DimApp {
     val lineHeight: Dp = 1.dp
-    val lineWidthBorderProfile: Dp = 2.dp
     val screenPadding: Dp = 16.dp
 
     val shadowElevation: Dp = screenPadding * .3f
 
-    val iconSizeSmale: Dp = 13.dp
     val iconSizeStandard: Dp = 25.dp
     val iconSizeTouchStandard: Dp = 48.dp
     val iconSizeTouchBig: Dp = 60.dp
     val iconSizeBig: Dp = 32.dp
     val iconSizeOrder: Dp = 40.dp
     val iconStubBig: Dp = 106.dp
-    val badgeLittle: Dp = 7.dp
-    val badgePadding: Dp = 15.dp
-
-    val imageAvatarSize: Dp = 83.dp
-    val avatarProfileSize: Dp = 100.dp
-    val sizeImageInPager: Dp = 120.dp
-    val sizeButtonForeGifts: Dp = 115.dp
-    val widthTextViewSize: Dp = 260.dp
-    val avatarPost: Dp = 44.dp
 
     val heightNavigationBottomBar: Dp = 80.dp
     val heightTopNavigationPanel: Dp = 64.dp

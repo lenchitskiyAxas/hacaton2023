@@ -15,7 +15,7 @@ import ru.aries.hacaton.data.GlobalDataObserver
 import ru.aries.hacaton.data.LocalGlobalData
 
 @Composable
-fun AxasTheme(
+fun ArielTheme(
     colors: ColorsSchemeApp = LightPaletteApp,
     typography: TypographySchemeApp = TypographyApp,
     shape: ShapeSchemeApp = ShapesApp,

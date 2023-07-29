@@ -1,20 +1,12 @@
 package ru.aries.hacaton.di
 
 import org.koin.dsl.module
-import ru.aries.hacaton.data.api_client.ApiAlbums
-import ru.aries.hacaton.data.api_client.ApiFamily
-import ru.aries.hacaton.data.api_client.ApiInterests
-import ru.aries.hacaton.data.api_client.ApiLocation
-import ru.aries.hacaton.data.api_client.ApiMedia
-import ru.aries.hacaton.data.api_client.ApiPosts
-import ru.aries.hacaton.data.api_client.ApiRequestsFamily
 import ru.aries.hacaton.data.api_client.ApiSignIn
-import ru.aries.hacaton.data.api_client.ApiUser
-import ru.aries.hacaton.data.api_client.ApiWishesAndList
 import ru.aries.hacaton.data.api_client.Client
 import ru.aries.hacaton.data.dao.DatabaseCities
 import ru.aries.hacaton.data.data_store.DataStorePrefs
-import ru.aries.hacaton.screens.module_authorization.AuthScreenModel
+import ru.aries.hacaton.screens.module_authorization.AuthModel
+import ru.aries.hacaton.screens.module_main.core_main.HomeMainModel
 import ru.aries.hacaton.screens.module_main.create_new_album.CreateNewAlbumModel
 import ru.aries.hacaton.screens.module_main.edit_media.EditMediaModel
 import ru.aries.hacaton.screens.module_main.main_gifts.GiftsModel
@@ -25,17 +17,8 @@ import ru.aries.hacaton.screens.module_main.new_wishlist.NewWishListModel
 import ru.aries.hacaton.screens.module_main.profile.ProfileModel
 import ru.aries.hacaton.screens.module_main.profile_redaction.ProfileRedactionModel
 import ru.aries.hacaton.screens.module_registration.RegStepsModel
-import ru.aries.hacaton.screens.splash.SplashScreenModel
-import ru.aries.hacaton.use_case.UseCaseAlbums
-import ru.aries.hacaton.use_case.UseCaseFamily
-import ru.aries.hacaton.use_case.UseCaseInterests
-import ru.aries.hacaton.use_case.UseCaseLocations
-import ru.aries.hacaton.use_case.UseCaseMedia
-import ru.aries.hacaton.use_case.UseCaseMembershipFamily
-import ru.aries.hacaton.use_case.UseCasePosts
+import ru.aries.hacaton.screens.splash.SplashModel
 import ru.aries.hacaton.use_case.UseCaseSignIn
-import ru.aries.hacaton.use_case.UseCaseUser
-import ru.aries.hacaton.use_case.UseCaseWishesAndList
 
 
 val setMainModule = module {
@@ -74,12 +57,13 @@ val setModels = module {
     single { RegStepsModel(get(), get(), get(), get(), get(), get()) }
     single { ProfileRedactionModel(get(), get(), get(), get()) }
 
-    factory { AuthScreenModel(get()) }
-    factory { SplashScreenModel(get(), get()) }
+    factory { AuthModel(get()) }
+    factory { SplashModel() }
     factory { RibbonModel(get()) }
     factory { MediaModel(get(), get(), get(), get()) }
     factory { EditMediaModel(get()) }
     factory { CreateNewAlbumModel(get()) }
+    factory { HomeMainModel(get()) }
     factory { GiftsModel(get()) }
     factory { NewWishModel(get()) }
     factory { NewWishListModel(get()) }

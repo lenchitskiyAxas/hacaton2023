@@ -41,7 +41,7 @@ class Client(
     private val dataStore: DataStorePrefs
 ) : Closeable {
     companion object {
-        const val BASE_URL: String = "http://87.249.49.97:84"
+        const val BASE_URL: String = "http://10.2.0.23:81"
     }
 
     val api = HttpClient {

@@ -10,14 +10,14 @@ import ru.aries.hacaton.di.setMainModule
 import ru.aries.hacaton.di.setModels
 import ru.aries.hacaton.di.setUseCase
 
-class HacatonApp : Application() {
+class HackathonApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        AndroidThreeTen.init(this@HacatonApp)
+        AndroidThreeTen.init(this@HackathonApp)
         startKoin {
             printLogger(Level.INFO)
-            androidContext(this@HacatonApp)
+            androidContext(this@HackathonApp)
             modules(
                 setModels,
                 setUseCase,

@@ -2,12 +2,18 @@ package ru.aries.hacaton.data.api_client
 
 
 import io.ktor.client.call.body
+import io.ktor.client.request.get
 import io.ktor.http.isSuccess
 import ru.aries.hacaton.base.util.logE
+import ru.aries.hacaton.models.api.BidApprovalResponse
+import ru.aries.hacaton.models.api.BidCallbackBody
 import ru.aries.hacaton.models.api.BodyAny
 import ru.aries.hacaton.models.api.CreatingEmailVerificationCode
 import ru.aries.hacaton.models.api.CreatingTelVerificationCode
+import ru.aries.hacaton.models.api.GettingAlbum
+import ru.aries.hacaton.models.api.GettingBidByBank
 import ru.aries.hacaton.models.api.GettingFamilyRequest
+import ru.aries.hacaton.models.api.GettingOffer
 import ru.aries.hacaton.models.api.GettingTelVerificationCode
 import ru.aries.hacaton.models.api.LoginData
 import ru.aries.hacaton.models.api.RudApi
@@ -26,43 +32,42 @@ class ApiSignIn(
         email: String,
         password: String,
     )= client.api.postRequest<LoginData, TokenWithUser>(
-        urlString = "/api/sign-in/email/",
+        urlString = "/api/sign-in/email-password/",
         body = LoginData(email = email, password = password)
     )
 
-    /**Оправить Код Подтверждения На Телефон
-     * RudApi [GettingTelVerificationCode]
-     * */
-    suspend fun postVerificationTel(
-        tel: String,
-    )= client.api.postRequest<CreatingTelVerificationCode, GettingTelVerificationCode>(
-        urlString = "/api/verification-codes/tel/",
-        body = CreatingTelVerificationCode(tel = tel)
+    suspend fun getBids(): RudApi<List<GettingBidByBank>> {
+        return try {
+            val response = client.api.get(urlString = "/api/cp/bids/")
+            response.body<RudApi<List<GettingBidByBank>>>().copy(
+                isSuccess = response.status.isSuccess()
+            )
+        } catch (e: Exception) {
+            logE("getBids", e.message)
+            e.printStackTrace()
+            RudApi.getError(description = e.message, errorCode = e.hashCode())
+        }
+    }
+
+    suspend fun getOffers(): RudApi<List<GettingOffer>> {
+        return try {
+            val response = client.api.get(urlString = "/api/cp/offers/")
+            response.body<RudApi<List<GettingOffer>>>().copy(
+                isSuccess = response.status.isSuccess()
+            )
+        } catch (e: Exception) {
+            logE("getOffers", e.message)
+            e.printStackTrace()
+            RudApi.getError(description = e.message, errorCode = e.hashCode())
+        }
+    }
+
+    suspend fun postBidId(
+        bid: BidCallbackBody,
+        bidId: Int,
+        )= client.api.postRequest<BidCallbackBody, BidApprovalResponse>(
+        urlString = "/api/cp/bids/${bidId}/process/",
+        body = bid
     )
 
-    /**Оправить Код Подтверждения На Email
-     * RudApi [VerificationCode]
-     * */
-    suspend fun postEmailApi(
-        email: String,
-    )= client.api.postRequest<CreatingEmailVerificationCode, VerificationCode>(
-        urlString = "/api/verification-codes/email/",
-        body = CreatingEmailVerificationCode(email = email)
-    )
-
-    /**Регистрация С Помощью Email
-     * RudApi [TokenWithUser]
-     * */
-    suspend fun postRegApi(
-        email: String,
-        password: String,
-        code: String,
-    )= client.api.postRequest<SignUpEmail, TokenWithUser>(
-        urlString = "/api/sign-up/email/",
-        body = SignUpEmail(
-            email = email,
-            password = password,
-            code = code
-        )
-    )
 }

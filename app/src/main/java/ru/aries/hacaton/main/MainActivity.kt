@@ -5,9 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.view.WindowCompat
 import org.koin.android.ext.android.inject
-import ru.aries.hacaton.base.theme.AxasTheme
-import ru.aries.hacaton.data.DataSingleLive
-import ru.aries.hacaton.data.GlobalDada
+import ru.aries.hacaton.base.theme.ArielTheme
 import ru.aries.hacaton.data.data_store.DataStorePrefs
 
 class MainActivity : ComponentActivity() {
@@ -18,7 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            AxasTheme {
+            ArielTheme {
                 MainNavigation()
             }
         }

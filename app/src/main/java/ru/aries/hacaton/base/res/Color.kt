@@ -3,7 +3,7 @@ package ru.aries.hacaton.base.res
 import androidx.compose.ui.graphics.Color
 import ru.aries.hacaton.base.theme.ColorsSchemeApp
 
-val AquaMarine = Color(0xFF29B8CC) // AquaMarine Primary
+val AquaMarine = Color(0xFF6CB657) // AquaMarine Primary
 val RaisinBlack = Color(0xFF415174) // Raisin Black Dark Grey textDark
 val BlueBell = Color(0xFF919CB4) // Blue Bell Light Gray textLite
 val Whisper = Color(0xFFF7F8FA) // Whisper Background
@@ -13,7 +13,6 @@ val LightBlue = Color(0xFFD6EEF3) // Light Blue Light
 val ElectricGreen = Color(0xFF29CC39) // Electric Green
 val FireEngineRed = Color(0xFFB3261E) // Fire Engine Red
 val WhiteApp = Color.White // White
-val BlueAXAS = Color(0xFF00A5F1)
 
 val LightPaletteApp = ColorsSchemeApp(
     primary = AquaMarine,

@@ -23,7 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -34,7 +33,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.aries.hacaton.base.theme.AxasTheme
+import ru.aries.hacaton.base.theme.ArielTheme
 import ru.aries.hacaton.base.theme.ThemeApp
 import ru.aries.hacaton.base.util.rememberState
 
@@ -354,7 +353,7 @@ private fun TextButtonMinLine(
 @Preview(backgroundColor = 0xFFBDAEAE)
 @Composable
 fun ButtonPreview() {
-    AxasTheme {
+    ArielTheme {
         Column(modifier = Modifier
             .background(ThemeApp.colors.backgroundVariant)
             .padding(16.dp),

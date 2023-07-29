@@ -3,21 +3,16 @@ package ru.aries.hacaton.base.common_composable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.AssistChip
-import androidx.compose.material3.ChipElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.SuggestionChipDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -25,16 +20,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ru.aries.hacaton.base.extension.clickableNoRipple
-import ru.aries.hacaton.base.extension.clickableRipple
 import ru.aries.hacaton.base.res.DimApp
-import ru.aries.hacaton.base.theme.AxasTheme
+import ru.aries.hacaton.base.theme.ArielTheme
 import ru.aries.hacaton.base.theme.ThemeApp
 
 
@@ -116,7 +109,7 @@ data class ColorChipsApp(
 @Composable
 private fun TestChips() {
 
-    AxasTheme() {
+    ArielTheme() {
 
         Column(modifier = Modifier
             .fillMaxWidth()

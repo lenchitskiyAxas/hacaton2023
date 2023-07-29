@@ -14,7 +14,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ru.aries.hacaton.base.theme.AxasTheme
+import ru.aries.hacaton.base.theme.ArielTheme
 import ru.aries.hacaton.base.theme.ThemeApp
 
 @Composable
@@ -115,7 +115,7 @@ fun checkboxColorsApp() = CheckboxDefaults.colors(
 @Preview
 @Composable
 private fun SwitchAppTest() {
-    AxasTheme {
+    ArielTheme {
         Column {
             Row() {
                 CheckerApp(

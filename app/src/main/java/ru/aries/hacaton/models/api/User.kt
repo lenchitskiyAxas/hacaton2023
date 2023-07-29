@@ -5,40 +5,24 @@ import kotlinx.serialization.Serializable
 import ru.aries.hacaton.base.res.TextApp
 import ru.aries.hacaton.base.theme.ThemeApp
 import ru.aries.hacaton.base.util.FieldValidators
-import ru.aries.hacaton.screens.module_registration.step_1.StepOneScreen
-import ru.aries.hacaton.screens.module_registration.step_2.StepTwoScreen
-import ru.aries.hacaton.screens.module_registration.step_3.StepThirdScreen
-import ru.aries.hacaton.screens.module_registration.step_4.StepForthScreen
-import ru.aries.hacaton.screens.module_registration.step_5.StepFifthScreen
-
 @Serializable
 data class GettingUser(
-    val first_name: String? = null,
-    val last_name: String? = null,
-    val patronymic: String? = null,
-    val maiden_name: String? = null,
-    val gender: Int? = null,
-    val tg: String? = null,
-    val status: String? = null,
-    val birthdate: Long? = null,
-    val description: String? = null,
-    val bio: String? = null,
-    val work: String? = null,
-    val favorite_music: String? = null,
-    val favorite_movies: String? = null,
-    val favorite_books: String? = null,
-    val favorite_games: String? = null,
-    val interests: List<String> = listOf(),
-    val id: Long = 0,
     val email: String? = null,
-    val registration_age: Long? = null,
     val tel: String? = null,
     val is_active: Boolean? = null,
     val is_superuser: Boolean? = null,
-    val last_visit: Long? = null,
-    val location_id: Int? = null,
-    val birth_location_id: Int? = null,
+
     val avatar: String? = null,
+    val first_name: String? = null,
+    val last_name: String? = null,
+    val patronymic: String? = null,
+    val fields: GettingFields? = null,
+    val birthdate: Long? = null,
+    val gender: Int? = null,
+    val id: Long = 0,
+    val last_activity: Long? = null,
+
+
 ) {
 
     fun getBirthdateInMillis() = if (this.birthdate == null) null else this.birthdate * 1000
@@ -47,30 +31,18 @@ data class GettingUser(
         first_name = this.first_name,
         last_name = this.last_name,
         patronymic = this.patronymic,
-        maiden_name = this.maiden_name,
         gender = this.gender,
-        tg = this.tg,
         tel = this.tel,
-        status = this.status,
         birthdate = this.birthdate,
-        description = this.description,
-        work = this.work,
-        favorite_music = this.favorite_music,
-        favorite_movies = this.favorite_movies,
-        favorite_books = this.favorite_books,
-        favorite_games = this.favorite_games,
-        interests = this.interests,
-        location_id = this.location_id,
-        birth_location_id = this.birth_location_id,
+
     )
 
     fun getFullName(): String {
         val first = this.first_name?.let { "$it " } ?: ""
         val last = this.last_name?.let { "$it " } ?: ""
         val patr = this.patronymic?.let { "$it " } ?: ""
-        val maiden = this.maiden_name?.let { "($it) " } ?: ""
 
-        return first + last + patr + maiden
+        return first + last + patr
     }
 
     fun getNameAndLastName(): String {
@@ -82,21 +54,11 @@ data class GettingUser(
     @JsonIgnore
     fun convertInEnumGender(): Gender = Gender.getGenderUser(this.gender)
 
-    @JsonIgnore
-    fun stepRegStatus() = when {
-        !isStepOneSuccess() -> StepNotEnoughReg.STEP_ONE_NOT_ENOUGH
-        !isStepTwoSuccess() -> StepNotEnoughReg.STEP_TWO_NOT_ENOUGH
-        !isStepThreeSuccess() -> StepNotEnoughReg.STEP_THIRD_NOT_ENOUGH
-        !isStepForthSuccess() -> StepNotEnoughReg.STEP_FORTH_NOT_ENOUGH
-        else -> StepNotEnoughReg.STEP_SUCCESS
-    }
-
-
     fun isStepOneSuccess(
     ) = this.email != null && FieldValidators.isValidEmail(this.email)
 
     fun isStepForthSuccess(
-    ) = this.interests.isNotEmpty() && !description.isNullOrEmpty()
+    ) = true
 
     fun isStepTwoSuccess(
     ) = this.first_name != null && this.last_name != null && this.gender != null
@@ -133,21 +95,6 @@ data class UpdatingUser(
         first_name = if (user.first_name != this.first_name) this.first_name else null,
         last_name = if (user.last_name != this.last_name) this.last_name else null,
         patronymic = if (user.patronymic != this.patronymic) this.patronymic else null,
-        maiden_name = if (user.maiden_name != this.maiden_name) this.maiden_name else null,
-        gender = if (user.gender != this.gender) this.gender else null,
-        tg = if (user.tg != this.tg) this.tg else null,
-        tel = if (user.tel != this.tel) this.tel else null,
-        status = if (user.status != this.status) this.status else null,
-        birthdate = if (user.birthdate != this.birthdate) this.birthdate else null,
-        description = if (user.description != this.description) this.description else null,
-        work = if (user.work != this.work) this.work else null,
-        favorite_music = if (user.favorite_music != this.favorite_music) this.favorite_music else null,
-        favorite_movies = if (user.favorite_movies != this.favorite_movies) this.favorite_movies else null,
-        favorite_books = if (user.favorite_books != this.favorite_books) this.favorite_books else null,
-        favorite_games = if (user.favorite_games != this.favorite_games) this.favorite_games else null,
-        interests = if (user.interests != this.interests) this.interests else null,
-        location_id = if (user.location_id != this.location_id) this.location_id else null,
-        birth_location_id = if (user.birth_location_id != this.birth_location_id) this.birth_location_id else null,
     )
 
 }
@@ -161,6 +108,15 @@ data class GettingLocation(
 data class LoginData(
     val email: String,
     val password: String,
+)
+@Serializable
+data class GettingFields(
+    val name: String?,
+    val url: String?,
+    val description: String?,
+    val min_mark: Int?,
+    val price: Int?,
+    val id: Int,
 )
 
 data class CreatingEmailVerificationCode(
@@ -205,23 +161,6 @@ data class TokenWithUser(
     val token: String,
 )
 
-enum class StepNotEnoughReg {
-    STEP_ONE_NOT_ENOUGH,
-    STEP_TWO_NOT_ENOUGH,
-    STEP_THIRD_NOT_ENOUGH,
-    STEP_FORTH_NOT_ENOUGH,
-    STEP_FIFTH_NOT_ENOUGH,
-    STEP_SUCCESS;
-
-    fun getScreen() = when (this) {
-        STEP_ONE_NOT_ENOUGH -> StepOneScreen()
-        STEP_TWO_NOT_ENOUGH -> StepTwoScreen()
-        STEP_THIRD_NOT_ENOUGH -> StepThirdScreen()
-        STEP_FORTH_NOT_ENOUGH -> StepForthScreen()
-        STEP_FIFTH_NOT_ENOUGH -> StepFifthScreen()
-        else -> StepOneScreen()
-    }
-}
 
 enum class Gender(val numbGender: Int) {
     WOMAN(1),
@@ -357,4 +296,51 @@ data class CreatingFamilyMember(
 
 
 }
+data class GettingOffer(
+    val title:String?,
+    val min_price:Int?,
+    val id:Int,
+    val max_price:Int?,
+    val percent:Int?,
+    val annual_payment:Int?,
+    val payment_term:Int?,
+    val bank:GettingBank?,
+    )
 
+data class GettingBank(
+    val name:String?,
+    val url:String?,
+    val icon:String?,
+    val id:Int)
+
+
+data class GettingBidByBank(
+val desired_amount: Int?,
+val id: Int,
+val is_accepted: Boolean?,
+val actual_amount: Int?,
+val annual_payment: Int?,
+val percent: Int?,
+val created: Long?,
+val offer: GettingOffer?,
+val user: GettingUser?,
+
+)
+
+data class  BidApproval(
+    val actual_amount: Int,
+    val annual_payment: Int,
+    val percent: Int,
+
+    )
+data class  BidCallbackBody(
+    val is_accepted: Boolean,
+    val approval: BidApproval,
+
+)
+data class  BidApprovalResponse(
+    val code: Int?,
+    val error: String?,
+    val bid: GettingBidByBank,
+
+)

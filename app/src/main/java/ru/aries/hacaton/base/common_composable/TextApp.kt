@@ -20,7 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import ru.aries.hacaton.base.theme.AxasTheme
+import ru.aries.hacaton.base.theme.ArielTheme
 import ru.aries.hacaton.base.theme.ThemeApp
 
 @Composable
@@ -586,7 +586,7 @@ fun TextLabelSmall(
 @Preview
 @Composable
 private fun TestTextApp() {
-    AxasTheme {
+    ArielTheme {
         val text1 = "Test Text App !!!!"
         Column(
             modifier = Modifier

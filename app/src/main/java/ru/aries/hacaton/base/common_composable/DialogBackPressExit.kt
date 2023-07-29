@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,7 +19,7 @@ import ru.aries.hacaton.R
 import ru.aries.hacaton.base.res.DimApp
 import ru.aries.hacaton.base.util.BackPressHandler
 import ru.aries.hacaton.base.res.TextApp
-import ru.aries.hacaton.base.theme.AxasTheme
+import ru.aries.hacaton.base.theme.ArielTheme
 import ru.aries.hacaton.base.theme.ThemeApp
 import ru.aries.hacaton.base.util.rememberImageRaw
 
@@ -89,7 +87,7 @@ private fun ContentDialogExit(
 @Preview
 @Composable
 private fun TestContentDialogExit() {
-    AxasTheme {
+    ArielTheme {
         ContentDialogExit(
             onDismiss = {},
             onClickExit = {}
