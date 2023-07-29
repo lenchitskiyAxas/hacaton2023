@@ -7,19 +7,11 @@ import io.ktor.http.isSuccess
 import ru.aries.hacaton.base.util.logE
 import ru.aries.hacaton.models.api.BidApprovalResponse
 import ru.aries.hacaton.models.api.BidCallbackBody
-import ru.aries.hacaton.models.api.BodyAny
-import ru.aries.hacaton.models.api.CreatingEmailVerificationCode
-import ru.aries.hacaton.models.api.CreatingTelVerificationCode
-import ru.aries.hacaton.models.api.GettingAlbum
 import ru.aries.hacaton.models.api.GettingBidByBank
-import ru.aries.hacaton.models.api.GettingFamilyRequest
 import ru.aries.hacaton.models.api.GettingOffer
-import ru.aries.hacaton.models.api.GettingTelVerificationCode
 import ru.aries.hacaton.models.api.LoginData
 import ru.aries.hacaton.models.api.RudApi
-import ru.aries.hacaton.models.api.SignUpEmail
 import ru.aries.hacaton.models.api.TokenWithUser
-import ru.aries.hacaton.models.api.VerificationCode
 
 class ApiSignIn(
     private val client: Client,
@@ -31,7 +23,7 @@ class ApiSignIn(
     suspend fun postSignIn(
         email: String,
         password: String,
-    )= client.api.postRequest<LoginData, TokenWithUser>(
+    ) = client.api.postRequest<LoginData, TokenWithUser>(
         urlString = "/api/sign-in/email-password/",
         body = LoginData(email = email, password = password)
     )
@@ -65,7 +57,7 @@ class ApiSignIn(
     suspend fun postBidId(
         bid: BidCallbackBody,
         bidId: Int,
-        )= client.api.postRequest<BidCallbackBody, BidApprovalResponse>(
+    ) = client.api.postRequest<BidCallbackBody, BidApprovalResponse>(
         urlString = "/api/cp/bids/${bidId}/process/",
         body = bid
     )

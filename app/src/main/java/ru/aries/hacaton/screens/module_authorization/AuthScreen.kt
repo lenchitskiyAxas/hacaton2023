@@ -197,17 +197,3 @@ private fun AuthorizationScr(
         }
     }
 }
-
-@Preview(
-    widthDp = 1920,
-    heightDp = 1200,
-    device = Devices.TABLET,
-)
-@Composable
-private fun AuthorizationTest() {
-    ArielTheme {
-        AuthorizationScr(
-            onClickAuthorization = { _, _ -> },
-        )
-    }
-}
